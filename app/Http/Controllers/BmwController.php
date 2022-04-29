@@ -85,7 +85,9 @@ class BmwController extends Controller
     }
     
     public function update(Request $id){
-
+        $image = $id->file('image');
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('assets/picture/cars'), $new_name);
         $data = array(
             'name' => $id->name,
             'price' => $id->price,
